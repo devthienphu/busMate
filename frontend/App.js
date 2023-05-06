@@ -6,6 +6,7 @@ import OnBoarding from "./src/screens/onBoarding";
 import SignIn from "./src/screens/signIn";
 import SignUp from "./src/screens/signUp";
 import Home from "./src/screens/home";
+import { useFonts } from 'expo-font';
 
 
 
