@@ -18,8 +18,16 @@ const userModel = new Schema({
     password: {
         type: String,
         require: true
-    }
-});
+    },
+    favoriteBus: [{
+        bus: {
+            type: mongoose.Schema.Types.ObjectId,
+            required: true,
+            ref: "Bus"
+        },
+        default: []
+    }]
+})
 
 userModel.methods.matchPassword = async function(enteredPassword) {
     return await bcrypt.compare(enteredPassword, this.password);
