@@ -11,6 +11,9 @@ const Home = ({navigation}) => {
             <Pressable onPress={() => navigation.navigate('Weather')} className="z-10">
                 <Image  source={startBtn} className="scale-50 ml-6 mt-[-50px] z-10"></Image>
             </Pressable>  
+            <Pressable onPress={() => navigation.navigate('Feedback')} className="z-10">
+                <Image  source={startBtn} className="scale-50 ml-6 mt-[-50px] z-10"></Image>
+            </Pressable> 
        </View>
     );
 }
