@@ -16,8 +16,8 @@ const Feedback = ({navigation}) => {
                 <TextInput
                         onChangeText={text=>setContent(text)}
                         value={content}
-                        className = "bg-white w-full rounded-[8px] h-full p-4 text-[16px]"
-                        style={{ elevation:4, textAlignVertical: 'top' }}
+                        className = "bg-white w-full rounded-[8px] h-full p-4 text-[16px] border border-[#60C6FF]"
+                        style={{ elevation:8, textAlignVertical: 'top' }}
                         placeholder="Nội dung bạn muốn góp ý..."
                         multiline={true}
                         numberOfLines = {10}
