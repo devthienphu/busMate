@@ -7,8 +7,9 @@ import SignIn from "./src/screens/signIn";
 import SignUp from "./src/screens/signUp";
 import Home from "./src/screens/home";
 import { useFonts } from 'expo-font';
-
-
+import BusLookUp from "./src/screens/busLookUp"
+import Weather from "./src/screens/weather"
+import Feedback from "./src/screens/feedback";
 
 const Stack = createNativeStackNavigator();
 export default function App() {
@@ -23,7 +24,9 @@ export default function App() {
         <Stack.Screen name="SignIn" component={SignIn} />
         <Stack.Screen name="SignUp" component={SignUp} />
         <Stack.Screen name="Home" component={Home} />
-
+        <Stack.Screen name="BusLookUp" component={BusLookUp} />
+        <Stack.Screen name="Weather" component={Weather} />
+        <Stack.Screen name="Feedback" component={Feedback} />
 
 
       </Stack.Navigator>
