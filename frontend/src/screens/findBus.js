@@ -6,10 +6,10 @@ import Search from '../components/search';
 const FindBus = ({navigation}) => {
     return (
         <View className=" h-full ">
-            <View className="bg-[#ace6fd] h-[70px] px-4 py-2">
-                <View className="pt-6">
+            <View className="bg-[#ace6fd] h-[70px] px-4 py-2 pt-4">
+                <Pressable onPress={() => navigation.navigate('Home')} className="pt-6">
                     <Icon name="arrow-left" size={25} light></Icon>
-                </View>
+                </Pressable>
             </View>
             
             {/* Search */}
@@ -19,7 +19,7 @@ const FindBus = ({navigation}) => {
 
             {/* Bus */} 
             <ScrollView className="mt-[-22px] bg-[#f9f9f9]">
-                <View className="flex flex-row flex-wrap gap-4 bg-[#f9f9f9] pt-12 px-2">
+                <View className="flex flex-row flex-wrap gap-4 items-center bg-[#f9f9f9] pt-12 px-2">
                     <Pressable onPress={() => navigation.navigate('BusDetail')} className="z-10 flex flex-col gap-y-1 rounded-2xl bg-white border py-3 px-6 mt-2 items-center text-center">
                         <Text className="font-bold text-xl">Tuyến xe 08</Text>
                         <Text className="text-gray-500">Bến xe quận 8- DHQG</Text>

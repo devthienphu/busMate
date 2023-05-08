@@ -4,7 +4,7 @@ import Icon from 'react-native-vector-icons/FontAwesome5';
 
 const Footer = () => {
     return (
-        <View className="flex flex-row py-1 bg-white rounded-b-2xl items-center justify-center gap-x-2">
+        <View className="flex flex-row py-1 bg-white rounded-t-2xl border border-[#9adbfe] items-center justify-center gap-x-2">
             <View className="flex flex-col gap-y-1 items-center px-4 py-1.5">
                 <Icon name="home" size={30} color="#60c6ff"></Icon>
                 <Text className="text-[#60c6ff] font-black ">Trang chủ</Text>
