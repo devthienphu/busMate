@@ -10,6 +10,8 @@ import { useFonts } from 'expo-font';
 import BusLookUp from "./src/screens/busLookUp"
 import Weather from "./src/screens/weather"
 import Feedback from "./src/screens/feedback";
+import FindBus from "./src/screens/findBus";
+import BusDetail from "./src/screens/busDetail";
 
 const Stack = createNativeStackNavigator();
 export default function App() {
@@ -27,6 +29,10 @@ export default function App() {
         <Stack.Screen name="BusLookUp" component={BusLookUp} />
         <Stack.Screen name="Weather" component={Weather} />
         <Stack.Screen name="Feedback" component={Feedback} />
+        <Stack.Screen name="FindBus" component={FindBus} />
+        <Stack.Screen name="BusDetail" component={BusDetail} />
+        
+
 
 
       </Stack.Navigator>

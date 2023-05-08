@@ -1,5 +1,8 @@
 import React from 'react';
-import { View, Text, Image, TextInput, Pressable,Animated,ScrollView,StyleSheet } from "react-native";
+import { View, Text, Image, TextInput, Pressable,Animated,ScrollView} from "react-native";
+import { LinearGradient } from 'expo-linear-gradient';
+
+
 import Icon from 'react-native-vector-icons/FontAwesome5';
 
 import notification from '../imgs/homePage/notification.png'
@@ -16,91 +19,132 @@ import map from '../imgs/homePage/map.png'
 
 import styles from "../style";
 import Footer from '../components/footer';
+import Search from '../components/search';
 
 const applications =[
     {
         img:findBus,
-        text:'Tìm bus'
+        text:'Tìm bus',
+        to:'FindBus'
     },
     {
         img:findRoad,
-        text:'Tìm đường'
+        text:'Tìm đường',
+        to:'FindBus'
     },
     {
         img:buyTicket,
-        text:'Mua bé'
+        text:'Mua vé',
+        to:'FindBus'
     },
     {
         img:news,
-        text:'Tin tức'
+        text:'Tin tức',
+        to:'FindBus'
     },
     {
         img:report,
-        text:'Báo cáo'
+        text:'Báo cáo',
+        to:'FindBus'
     },
     {
         img:findJob,
-        text:'Tìm việc'
+        text:'Tìm việc',
+        to:'FindBus'
     },
     {
         img:weather,
-        text:'Thời tiết'
+        text:'Thời tiết',
+        to:'FindBus'
     },
     {
         img:feedback,
-        text:'Góp ý'
+        text:'Góp ý',
+        to:'FindBus'
     },
 ]
 
-const Home = () => {
+const Home = ({ navigation }) => {
 
   
 
     return (
-       <ScrollView className="bg-[#cde0fe]">
-            <View className="flex flex-row justify-between px-6 mt-12">
-                <View className="bg-[#eefbfe] rounded-xl p-1.5 px-2 font-semibold flex flex-row gap-x-1 items-center">
-                    <Icon name="map-marker-alt" light></Icon>
-                    <Text className="">TP.Hồ Chí Minh</Text>
-                </View>
-                <Image source={notification} className="h-8 w-8"></Image>
-            </View>
+        <View className="flex flex-col h-full justify-between">
 
-            {/* Search */}
-            <View className="z-10 flex border flex-row justify-between items-center bg-white w-3/4 mx-auto rounded-xl mt-4 px-4">
-                <TextInput className="py-2" placeholder="Nhập điểm đến"/>              
-                <Icon className="flex justify-end" name="search"></Icon>
-            </View>
-
-            {/* application */}
-            <View className="mt-[-25px] flex flex-row flex-wrap pl-3 py-6 pt-10 bg-white rounded-2xl gap-x-6  items-center mx-auto">
-                    {
-                        applications.map((app,key)=>(
-                            <View className="flex flex-col items-center" key={key}>
-                                <Image source={app.img} className="w-16 h-16"></Image>
-                                <Text>{app.text}</Text>
-                            </View>
-                        ))
-                    }
-            </View>
-            
-            {/* <Image source={map} className=""></Image> */}
-
-            {/* News */}
-            <View className="bg-[#f9f9f9]">
-                <View className="flex flex-row justify-between px-4 items-center py-4">
-                    <Text className="font-bold text-lg">Tin tức nổi bật</Text>
-                    <View className="flex flex-row items-center gap-x-1">
-                        <Text className="text-gray-800">Xem thêm</Text>
-                        <Icon name="arrow-right" light></Icon>
+            <ScrollView className="bg-[#cde0fe] ">
+                    <View className="flex flex-row justify-between px-6 mt-12">
+                        <View className="bg-[#eefbfe] rounded-xl p-1.5 px-2 font-semibold flex flex-row gap-x-1 items-center">
+                            <Icon name="map-marker-alt" light></Icon>
+                            <Text className="">TP.Hồ Chí Minh</Text>
+                        </View>
+                        <Image source={notification} className="h-8 w-8"></Image>
                     </View>
-                </View>
 
-            </View>
+                    {/* Search */}
+                    <Search/>
+
+                    {/* application */}
+                    <View className="mt-[-25px] flex flex-row flex-wrap pl-3 py-6 pt-10 bg-white rounded-2xl gap-x-6 items-center mx-auto">
+                            {
+                                applications.map((app,key)=>(
+                                    <Pressable onPress={() => navigation.navigate(app.to)} className="flex flex-col items-center" key={key}>
+                                        <Image source={app.img} className="w-16 h-16"></Image>
+                                        <Text>{app.text}</Text>
+                                    </Pressable>
+                                ))
+                            }
+                    </View>
+                    
+                    <View className="h-[300px]">
+
+                        <Image source={map} className="object-scale-down mx-auto"></Image>
+                    </View>
+
+                    {/* News */}
+                    <View className="bg-[#f9f9f9] pb-4">
+                        <View className="flex flex-row justify-between px-4 items-center py-4">
+                            <Text className="font-bold text-lg">Tin tức nổi bật</Text>
+                            <View className="flex flex-row items-center gap-x-1">
+                                <Text className="text-gray-800">Xem thêm</Text>
+                                <Icon name="arrow-right" light></Icon>
+                            </View>
+                        </View>
+
+                        <View className="flex flex-row flex-wrap items-center gap-y-2   ">
+                            <View className="flex flex-col basis-1/3 items-center gap-y-1">
+                                <View className="rounded-xl border w-[100px] h-[100px]"></View>
+                                <Text className="text-gray-500 text-xs truncate">Khảo sát nhu cầu sử dụng phương tiện</Text>
+                            </View>
+                            <View className="flex flex-col basis-1/3 items-center gap-y-1">
+                                <View className="rounded-xl border w-[100px] h-[100px]"></View>
+                                <Text className="text-gray-500 text-xs truncate">Khảo sát nhu cầu sử dụng phương tiện</Text>
+                            </View>
+                            <View className="flex flex-col basis-1/3 items-center gap-y-1">
+                                <View className="rounded-xl border w-[100px] h-[100px]"></View>
+                                <Text className="text-gray-500 text-xs truncate">Khảo sát nhu cầu sử dụng phương tiện</Text>
+                            </View>
+                            <View className="flex flex-col basis-1/3 items-center gap-y-1">
+                                <View className="rounded-xl border w-[100px] h-[100px]"></View>
+                                <Text className="text-gray-500 text-xs truncate">Khảo sát nhu cầu sử dụng phương tiện</Text>
+                            </View>
+                            <View className="flex flex-col basis-1/3 items-center gap-y-1">
+                                <View className="rounded-xl border w-[100px] h-[100px]"></View>
+                                <Text className="text-gray-500 text-xs truncate">Khảo sát nhu cầu sử dụng phương tiện</Text>
+                            </View>
+                            <View className="flex flex-col basis-1/3 items-center gap-y-1">
+                                <View className="rounded-xl border w-[100px] h-[100px]"></View>
+                                <Text className="text-gray-500 text-xs truncate">Khảo sát nhu cầu sử dụng phương tiện</Text>
+                            </View>
+                            
+                        </View>
+
+                    </View>
+            </ScrollView>
 
             <Footer/>
+        </View>
 
-       </ScrollView>
+       
     );
 }
 
