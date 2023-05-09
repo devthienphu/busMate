@@ -1,11 +1,13 @@
 import React from 'react';
-import { View, Text, Image, TextInput, Pressable,Animated,ScrollView} from "react-native";
+import { View, Text,Modal, Image, TextInput, Pressable,Animated,ScrollView} from "react-native";
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import Search from '../components/search';
 
 const FindBus = ({navigation}) => {
+    
     return (
         <View className=" h-full ">
+            {/* Header */}
             <View className="bg-[#ace6fd] h-[70px] px-4 py-2 pt-4">
                 <Pressable onPress={() => navigation.navigate('Home')} className="pt-6">
                     <Icon name="arrow-left" size={25} light></Icon>
@@ -81,6 +83,8 @@ const FindBus = ({navigation}) => {
                     </Pressable>
                 </View>
             </ScrollView>
+
+
            
         </View>
     );
