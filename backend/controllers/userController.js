@@ -3,6 +3,7 @@ const Bus = require('../models/busModel');
 const generateToken = require("../utils/generateToken");
 const bcrypt = require("bcryptjs");
 const asyncHandler = require('express-async-handler')
+const mongoose = require('mongoose');
 
 
 class UserController {
@@ -104,24 +105,26 @@ class UserController {
     })
 
     //  [PATCH - ROUTE: api/user/favorite/:id] - ID of Bus
-    changeFavoriteState = asyncHandler(async(req, res) => {
+    addFavoriteBus = asyncHandler(async(req, res) => {
         //     console.log(req.params.id)
-        //     const bus = await Bus.findById(req.params.id)
-        //     if (bus) {
-        //         var user = await User.findOneAndUpdate({ _id: req.user._id })
-        //         const index = user.favoriteBus.findIndex(fav => fav.bus.toString() === bus._id.toString());
-        //         if (index === -1) {
-        //             const updatedUser = await user.save();
-        //             res.json(updatedUser);
-        //             user.favoriteBus.push({ bus: bus._id });
-        //         } else {
-
-        //         }
-
-        //     } else {
-        //         res.status(404);
-        //         throw new Error('Bus does not exist!');
-        //     }
+        const bus = await Bus.findById(req.params.id)
+        if (bus) {
+            var updateUser = await User.findOneAndUpdate({ _id: req.user._id }, {
+                $push: {
+                    favoriteBus: {
+                        bus: new mongoose.Types.ObjectId(bus._id) ,
+                        number: bus.number
+                    }
+                }
+            }, {
+                new: true
+            }).lean();     
+            delete updateUser.password      
+            res.json(updateUser)
+        } else {
+            res.status(404);
+            throw new Error('Bus does not exist!');
+        }
 
     })
 }

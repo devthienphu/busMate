@@ -8,8 +8,9 @@ class BusController {
         if (key) {
             const buses = await Bus.find({
                 $or: [
-                    { stoppingStation1: { $elemMatch: { nameStation: { $regex: key, $options: 'i' } } } },
-                    { eStation: { $regex: key, $options: 'i' } }
+                    { name: { $regex: key, $options: 'i' } },
+                    { eStation: { $regex: key, $options: 'i' } },
+                    { sStation: { $regex: key, $options: 'i' } },
                 ]
             })
             res.json(buses)

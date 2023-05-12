@@ -14,7 +14,7 @@ class FeedbackController {
             await newFeedback.save()
             res.json(newFeedback)
         } else {
-            res.status(404);
+            res.status(400);
             throw new Error("Invalid data");
         }
     })
