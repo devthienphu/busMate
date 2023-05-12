@@ -5,9 +5,13 @@ var feedbackModel = new Schema({
         type: String,
         require: true
     },
+    // timestamps: {
+    //     createdAt: true,
+    //     updatedAt: false
+    // },
     timestamps: {
-        createdAt: true,
-        updatedAt: false
+        type: Date,
+        default: Date.now
     },
     user: {
         type: Schema.Types.ObjectId,

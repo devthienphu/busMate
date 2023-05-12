@@ -1,7 +1,7 @@
 const userRouter = require('./userRoutes');
 const busRouter = require('./busRoutes');
 const feedbackRouter = require('./feedbackRoutes');
-const passengerBusRouter = require('./passengerBuRoutes');
+const passengerBusRouter = require('./passengerBusRoutes');
 const reportRouter = require('./reportRoutes');
 const ticketRouter = require('./ticketRoutes');
 
