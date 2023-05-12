@@ -20,13 +20,16 @@ const userModel = new Schema({
         require: true
     },
     favoriteBus: [{
-        bus: {
-            type: mongoose.Schema.Types.ObjectId,
-            required: true,
-            ref: "Bus"
+            bus: {
+                type: mongoose.Schema.Types.ObjectId,
+                required: true,
+                ref: "Bus"
+            }
         },
-        default: []
-    }],
+        {
+            default: []
+        }
+    ],
     roleUser: {
         type: String,
         require: true

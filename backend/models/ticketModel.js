@@ -13,7 +13,8 @@ var ticketModel = new Schema({
     },
     state: {
         type: String,
-        require: true
+        require: true,
+        default: 'Pending'
     },
 
 })

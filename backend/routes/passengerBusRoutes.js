@@ -4,7 +4,7 @@ const passengerBusController = require('../controllers/passengerBusController');
 const authMiddlewares = require('../middlewares/authMiddlewares');
 
 router.post('/', authMiddlewares.protect, authMiddlewares.isAdmin, passengerBusController.addPBus);
-router.get('/', authMiddlewares.protect, passengerBusController.getAllPBus);
+router.get('/', passengerBusController.getAllPBus);
 
 
 module.exports = router;
