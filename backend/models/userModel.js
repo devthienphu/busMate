@@ -26,7 +26,11 @@ const userModel = new Schema({
             ref: "Bus"
         },
         default: []
-    }]
+    }],
+    roleUser: {
+        type: String,
+        require: true
+    }
 })
 
 userModel.methods.matchPassword = async function(enteredPassword) {

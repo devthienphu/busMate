@@ -8,7 +8,7 @@ const asyncHandler = require('express-async-handler')
 class UserController {
     //  [ POST - ROUTE: api/user/register ]
     registerUser = asyncHandler(async(req, res) => {
-        const { userName, email, contact, password } = req.body;
+        const { userName, email, contact, password, roleUser } = req.body;
         const user = await User.findOne({ $or: [{ email }, { userName }] });
         if (!user) {
             var salt = await bcrypt.genSalt(10);
@@ -17,7 +17,8 @@ class UserController {
                 userName,
                 email,
                 contact,
-                password: hashPassword
+                password: hashPassword,
+                roleUser
             });
             if (newUser) {
                 res.json({
@@ -25,6 +26,7 @@ class UserController {
                     userName,
                     email,
                     contact,
+                    roleUser,
                     createdAt: newUser.createdAt
                 });
             } else {
@@ -48,6 +50,7 @@ class UserController {
                 userName: user.userName,
                 email: user.email,
                 contact: user.contact,
+                roleUser,
                 createdAt: user.createdAt,
                 token: generateToken(user._id)
             });
@@ -66,6 +69,7 @@ class UserController {
                 userName: user.userName,
                 email: user.email,
                 contact: user.contact,
+                roleUser: user.roleUser,
                 createdAt: user.createdAt,
             })
         } else {
