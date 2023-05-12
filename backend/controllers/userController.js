@@ -50,7 +50,6 @@ class UserController {
                 userName: user.userName,
                 email: user.email,
                 contact: user.contact,
-                roleUser,
                 createdAt: user.createdAt,
                 token: generateToken(user._id)
             });
