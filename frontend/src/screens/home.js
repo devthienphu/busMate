@@ -146,7 +146,7 @@ const Home = ({ navigation }) => {
                     </View>
             </ScrollView>
 
-            <Footer navigation={navigation}/>
+            <Footer navigation={navigation} id={1}/>
         </View>
 
        

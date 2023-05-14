@@ -45,7 +45,7 @@ const Notification = ( {navigation} ) => {
 
             </View>
 
-            <Footer />
+            <Footer navigation={navigation} id={2}/>
         </View>
     )
 }
