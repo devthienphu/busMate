@@ -60,20 +60,20 @@ const SignIn = ({ navigation }) => {
             style={styles.innerShadow}
             onPress={handleHide}
             >
-            <Text className="text-white text-2xl font-black text-center">
+            <Text style={{fontFamily: 'Poppins-Bold'}} className="text-white text-2xl text-center">
                 Đăng nhập
             </Text>
             </Pressable>     
 
             <View className="flex flex-row gap-x-1 items-center mx-auto pt-5">
-                <Text className="text-lg">Chưa có tài khoản?</Text>
+                <Text style={{fontFamily:'Poppins-Regular'}} className="text-sm">Chưa có tài khoản?</Text>
                 <Pressable onPress={() => navigation.navigate('SignUp')}>
-                    <Text className="italic font-bold text-lg text-[#441F62]">
+                    <Text style={{fontFamily:'Poppins-BoldItalic'}} className="text-sm text-[#441F62]">
                         Đăng ký ngay
                     </Text>
                 </Pressable>
             </View>
-            <Text className="italic font-bold text-lg text-[#441F62] text-center">
+            <Text style={{fontFamily:'Poppins-BoldItalic'}} className="text-sm text-[#441F62] text-center">
             Quên mật khẩu
             </Text>
         </Animated.View>

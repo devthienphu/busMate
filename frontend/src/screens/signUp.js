@@ -59,7 +59,7 @@ const SignUp = ({ navigation }) => {
             toValue: 500,
             duration: 200,
             useNativeDriver: true
-        }).start(() => navigation.navigate("SignUp"));
+        }).start(() => navigation.navigate("Home"));
     }
 
     return (
@@ -74,10 +74,11 @@ const SignUp = ({ navigation }) => {
                 {
                     reg.map((field,key)=>(
                         <TextInput
-                        className="bg-white rounded-2xl border border-gray-200 py-3 mx-12 px-4"
-                        name={field.name}
-                        placeholder={field.placeholder}
-                        secureTextEntry={field.isHidden}
+                            key={key}
+                            className="bg-white rounded-2xl border border-gray-200 py-3 mx-12 px-4"
+                            name={field.name}
+                            placeholder={field.placeholder}
+                            secureTextEntry={field.isHidden}
                         ></TextInput>
                     ))
                 }
@@ -85,19 +86,19 @@ const SignUp = ({ navigation }) => {
             </View>
 
             <Pressable
-            className="bg-[#2F3039] rounded-2xl py-4 mx-12 px-4 mt-8"
-            style={styles.innerShadow}
-            onPress={handleHide}
+                className="bg-[#2F3039] rounded-2xl py-4 mx-12 px-4 mt-8"
+                style={styles.innerShadow}
+                onPress={handleHide}
             >
-            <Text className="text-white text-2xl font-black text-center">
+            <Text style={{fontFamily: 'Poppins-Bold'}} className="text-white text-2xl text-center">
                 Đăng ký
             </Text>
             </Pressable>     
 
             <View className="flex flex-row gap-x-1 items-center mx-auto pt-5">
-            <Text className="text-lg">Dã có tài khoản?</Text>
+            <Text style={{fontFamily:'Poppins-Regular'}} className="text-sm">Đã có tài khoản?</Text>
             <Pressable onPress={() => navigation.navigate('SignIn')}>
-                <Text className="italic font-bold text-lg text-[#441F62]">
+                <Text style={{fontFamily:'Poppins-BoldItalic'}}>
                     Đăng nhập
                 </Text>
             </Pressable>
