@@ -16,6 +16,9 @@ import Report from "./src/screens/report";
 import Notification from "./src/screens/notification";
 import FindRoute from './src/screens/findRoute';
 import RouteDetail from './src/screens/routeDetail';
+import BookTicket from './src/screens/bookTicket';
+import MyTicket from './src/screens/myTicket';
+import Profile from './src/screens/profile';
 
 const Stack = createNativeStackNavigator();
 
@@ -65,7 +68,9 @@ export default function App() {
         <Stack.Screen name="Notification" component={Notification} />
         <Stack.Screen name="FindRoute" component={FindRoute} />
         <Stack.Screen name="RouteDetail" component={RouteDetail} />
-
+        <Stack.Screen name="BookTicket" component={BookTicket} />
+        <Stack.Screen name="MyTicket" component={MyTicket} />
+        <Stack.Screen name="Profile" component={Profile} />
       </Stack.Navigator>
     </NavigationContainer>
   );

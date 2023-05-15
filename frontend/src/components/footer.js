@@ -16,15 +16,15 @@ const Footer = ({ navigation, id }) => {
                 <Text style={{fontFamily:'Poppins-SemiBold'}} className={id === 2? "text-xs text-[#EF7474]":"text-xs text-[#60c6ff]"}>Thông báo</Text>
             </Pressable>
 
-            <View className={'flex flex-col items-center mx-4 py-2  space-y-1 '+ (id===3? 'border-t-4 border-[#EF7474]':'')}>
+            <Pressable onPress={() => navigation.navigate("MyTicket")} className={'flex flex-col items-center mx-4 py-2  space-y-1 '+ (id===3? 'border-t-4 border-[#EF7474]':'')}>
                 <Icon name="ticket-alt" size={25} color={id === 3? "#EF7474":"#60c6ff"}></Icon>
                 <Text style={{fontFamily:'Poppins-SemiBold'}} className={id === 3? "text-xs text-[#EF7474]":"text-xs text-[#60c6ff]"}>Vé của tôi</Text>
-            </View>
+            </Pressable>
 
-            <View className={'flex flex-col items-center mx-4 py-2  space-y-1 '+ (id===4? 'border-t-4 border-[#EF7474]':'')}>
+            <Pressable onPress={() => navigation.navigate("Profile")} className={'flex flex-col items-center mx-4 py-2  space-y-1 '+ (id===4? 'border-t-4 border-[#EF7474]':'')}>
                 <Icon name="user" size={25} color={id === 4? "#EF7474":"#60c6ff"}></Icon>
                 <Text style={{fontFamily:'Poppins-SemiBold'}} className={id === 4? "text-xs text-[#EF7474]":"text-xs text-[#60c6ff]"}>Cá nhân</Text>
-            </View>
+            </Pressable>
         </View>
     );
 }

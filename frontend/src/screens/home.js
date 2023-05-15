@@ -14,7 +14,6 @@ import report from '../imgs/homePage/report.png'
 import weather from '../imgs/homePage/weather.png'
 import feedback from '../imgs/homePage/feedback.png'
 import buyTicket from '../imgs/homePage/buyTicket.png'
-import map from '../imgs/homePage/map.png'
 
 import styles from "../style";
 import Footer from '../components/footer';
@@ -35,12 +34,12 @@ const applications =[
     {
         img:buyTicket,
         text:'Mua vé',
-        to:'FindBus'
+        to:'BookTicket'
     },
     {
         img:news,
         text:'Tin tức',
-        to:'FindBus'
+        to:'Home'
     },
     {
         img:report,
@@ -50,7 +49,7 @@ const applications =[
     {
         img:findJob,
         text:'Tìm việc',
-        to:'FindBus'
+        to:'Home'
     },
     {
         img:weather,
