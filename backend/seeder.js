@@ -29,11 +29,68 @@ const importData = async() => {
         await User.deleteMany();
         await Bus.deleteMany();
         await PassengerBus.deleteMany();
+        await Report.deleteMany();
+        await Feedback.deleteMany();
+        await Ticket.deleteMany();
 
         const importedUsers = await User.insertMany(newUsers);
         const importedBuses = await Bus.insertMany(buses);
         const importedPassengerBus = await PassengerBus.insertMany(passengerBus)
+            // Create reports for some of the users
+        const reports = [{
+                user: importedUsers[0]._id,
+                content: "Bus was late"
+            },
+            {
+                user: importedUsers[0]._id,
+                content: "Driver was rude"
+            },
+            {
+                user: importedUsers[1]._id,
+                content: "Conductor was helpful"
+            },
+            {
+                user: importedUsers[1]._id,
+                content: "Drive so fast"
+            }
+        ];
+        const feedback = [{
+                user: importedUsers[0]._id,
+                content: "Good service"
+            },
+            {
+                user: importedUsers[0]._id,
+                content: "Bus was dirty"
+            },
+            {
+                user: importedUsers[1]._id,
+                content: "Driver was friendly"
+            }
+        ];
+        const tickets = [{
+                user: importedUsers[0]._id,
+                passengerBus: importedPassengerBus[0]._id,
+                state: 'Pending'
+            },
+            {
+                user: importedUsers[0]._id,
+                passengerBus: importedPassengerBus[0]._id,
+                state: 'Pending'
+            },
+            {
+                user: importedUsers[1]._id,
+                passengerBus: importedPassengerBus[1]._id,
+                state: 'Pending'
+            }, {
+                user: importedUsers[1]._id,
+                passengerBus: importedPassengerBus[1]._id,
+                state: 'Pending'
+            }
+        ]
 
+        await Feedback.insertMany(feedback);
+        await Report.insertMany(reports);
+        await Ticket.insertMany(tickets);
         console.log("Sucessfully imported data in database!");
         process.exit();
     } catch (error) {
