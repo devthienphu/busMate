@@ -57,7 +57,7 @@ const FindBus = ({navigation}) => {
                                     <Text style={{fontFamily:'Poppins-SemiBold'}} className="ftext-gray-500">{item.unitPrice}k</Text>
                                 </Icon>
 
-                                <Icon name="heart" size={15} color="#ef7474"></Icon>
+                                <Icon name="heart" size={20} color="#ef7474"></Icon>
 
                             </View>
                         </Pressable>
