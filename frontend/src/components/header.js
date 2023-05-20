@@ -7,7 +7,7 @@ const Header = ({navigation, title}) => {
     return (
         <LinearGradient colors={['#C7F2FD', '#60C6FF']} start={[0, 0]} end={[1, 1]}>
             <View className ="mt-8 p-4 flex-row">
-                <Pressable onPress={() => navigation.goBack()} className="z-10">
+                <Pressable onPress={() => navigation.goBack()} className="z-10 p-2">
                     <Image  source={backBtn} className="w-8 h-8"></Image>
                 </Pressable> 
                 {title?                 

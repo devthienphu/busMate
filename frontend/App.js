@@ -3,11 +3,12 @@ import React from 'react'
 import { useFonts } from 'expo-font';
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 import OnBoarding from "./src/screens/onBoarding";
 import SignIn from "./src/screens/signIn";
 import SignUp from "./src/screens/signUp";
 import Home from "./src/screens/home";
-import BusLookUp from "./src/screens/busLookUp"
 import Weather from "./src/screens/weather"
 import Feedback from "./src/screens/feedback";
 import FindBus from "./src/screens/findBus";
@@ -51,15 +52,13 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        screenOptions={{
-            headerShown: false,
-          }}
+        initialRouteName= {AsyncStorage.getItem('user') ? 'Home' :'OnBoarding'}
+        screenOptions={{ headerShown: false }}
       >
         <Stack.Screen name="OnBoarding" component={OnBoarding} />
         <Stack.Screen name="SignIn" component={SignIn} />
         <Stack.Screen name="SignUp" component={SignUp} />
         <Stack.Screen name="Home" component={Home} />
-        <Stack.Screen name="BusLookUp" component={BusLookUp} />
         <Stack.Screen name="Weather" component={Weather} />
         <Stack.Screen name="Feedback" component={Feedback} />
         <Stack.Screen name="FindBus" component={FindBus} />

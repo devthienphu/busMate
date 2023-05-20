@@ -24,17 +24,3 @@ export const getBusDetail = async(number) => {
       return error.response.data;
   }
 }
-
-export const addFavBus = async(token,busId) => {
-  try {
-    const res = await axios({
-      method: "get",
-      url: `http://${ip}:5000/api/user/favorite/${busId}`,
-      headers: { Authorization: `Bearer ${token}` }
-    });
-    return res.data;
-  } catch(error) {
-      return error.response.data;
-  }
-}
-
