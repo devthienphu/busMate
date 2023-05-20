@@ -28,7 +28,7 @@ const FindBus = ({navigation}) => {
             
             {/* Search */}
             <View className="mt-[-40px] z-10">
-                <Search setItem={setBus}/>   
+                <Search setItem={setBus} textHolder='Nhập xe buýt  '/>   
             </View>
 
             {/* Bus */} 

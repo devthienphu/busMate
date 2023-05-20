@@ -73,8 +73,9 @@ const Home = ({ navigation }) => {
             if (isFocused)
             {
                 setLoad(true)
-                if (typeof await AsyncStorage.getItem('user') === 'string')
-                    setToken(await AsyncStorage.getItem('user'))
+                const res = await AsyncStorage.getItem('user')
+                if (typeof res === 'string')
+                    setToken(res)
                 else 
                     setToken(null)
                 setLoad(false)
@@ -109,7 +110,7 @@ const Home = ({ navigation }) => {
                 </View>
 
                 {/* Search */}
-                <Search/>
+                <Search disabled={true} textHolder='Nhập điểm đến  '/>
 
                 {/* application */}
                 <View className="mt-[-25px] flex flex-row flex-wrap px-2 py-4 pt-10 bg-white rounded-2xl items-center mx-auto">

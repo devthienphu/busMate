@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 
 import { useFonts } from 'expo-font';
 import { NavigationContainer } from "@react-navigation/native";
@@ -24,6 +24,17 @@ import Profile from './src/screens/profile';
 const Stack = createNativeStackNavigator();
 
 export default function App() {
+  const [token, setToken] = useState(null)
+  useEffect(() => {
+    (async () => {
+      const res = await AsyncStorage.getItem('user')
+      if (typeof res === 'string')
+        setToken(res)
+      else 
+        setToken(null)
+    })()
+  },[])
+
   const [loaded] = useFonts({
     'Poppins-Black': require('./assets/fonts/Poppins-Black.otf'),
     'Poppins-BlackItalic': require('./assets/fonts/Poppins-BlackItalic.otf'),
@@ -52,7 +63,7 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName= {AsyncStorage.getItem('user') ? 'Home' :'OnBoarding'}
+        initialRouteName= {token ? 'Home' :'OnBoarding'}
         screenOptions={{ headerShown: false }}
       >
         <Stack.Screen name="OnBoarding" component={OnBoarding} />

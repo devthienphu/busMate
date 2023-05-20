@@ -1,4 +1,6 @@
-import { Image, Pressable, Text, View } from "react-native"
+import { useState, useEffect } from 'react' 
+
+import { ActivityIndicator, Image, Pressable, Text, View } from "react-native"
 import Footer from "../components/footer"
 import { LinearGradient } from 'expo-linear-gradient';
 import Icon from 'react-native-vector-icons/FontAwesome5';
@@ -11,6 +13,7 @@ import setting from '../imgs/profile/setting.png'
 import evaluate from '../imgs/profile/evaluate.png'
 import sercurity from '../imgs/profile/sercurity.png'
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { getUser } from '../api/userApi';
 
 const options = [
     {
@@ -37,11 +40,21 @@ const options = [
 
 const logout = async (navigation) => {
     await AsyncStorage.removeItem('user')
-    // console.log(AsyncStorage.getItem('user'))
     navigation.navigate('Home')
 }
 
 const Profile = ({navigation}) => {
+    const [load, setLoad] = useState(true)
+    const [profile, setProfile] = useState(null)
+
+    useEffect(() => {
+        (async () => {
+            const token = await AsyncStorage.getItem('user')
+            setProfile(await getUser(token))
+            setLoad(false)
+        })()
+    },[])
+
     return (
         <View className='flex flex-col h-full justify-between bg-[#f9f9f9]'>
             <View>
@@ -52,11 +65,17 @@ const Profile = ({navigation}) => {
                             <Image source={avatar} className='w-32 h-32'></Image>
                         </View>
 
-                        <View className='space-y-2'>
-                            <Text className='text-xl text-right' style={{fontFamily:'Poppins-Bold'}}>Hoàng Nguyễn</Text>
-                            <Text className='text-sm text-[#aaa] text-right' style={{fontFamily:'Poppins-Regular'}}>SĐT: 123456789</Text>
-                            <Text className='text-sm text-[#aaa] text-right' style={{fontFamily:'Poppins-Regular'}}>abc@gmail.com</Text>
-                        </View>
+                        {
+                            load
+                            ?
+                            <ActivityIndicator size="large" />
+                            :
+                            <View className='space-y-2 '>
+                                <Text className='text-xl text-right' style={{fontFamily:'Poppins-Bold'}}>{profile.userName}</Text>
+                                <Text className='text-sm text-[#aaa] text-right' style={{fontFamily:'Poppins-Regular'}}>SĐT: {profile.contact}</Text>
+                                <Text className='text-sm text-[#aaa] text-right' style={{fontFamily:'Poppins-Regular'}}>{profile.email}</Text>
+                            </View>
+                        }
 
                     </View>
 

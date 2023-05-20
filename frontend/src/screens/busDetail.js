@@ -2,7 +2,7 @@ import React from 'react';
 import { useState, useEffect } from 'react'
 import { BlurView } from 'expo-blur';
 import Swiper from 'react-native-swiper';
-import { View, Text, Modal, TextInput, Pressable,ScrollView,Image} from "react-native";
+import { View, Text, Modal, TextInput, Pressable,ScrollView,Image, ActivityIndicator} from "react-native";
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import MapView from 'react-native-maps'
 import Header from '../components/header'
@@ -13,6 +13,7 @@ import { getBusDetail } from '../api/busApi';
 
 const BusDetail = ({navigation, route}) => {
     const { id } = route.params
+    const [load, setLoad] = useState(true)
     const [busModal, setBusModal] = useState(false);
     const [ratingModal, setRatingModal] = useState(false);
     const [busdetail, setBusdetail] = useState(null)
@@ -22,9 +23,9 @@ const BusDetail = ({navigation, route}) => {
         (async () => {
             const res = await getBusDetail(id)
             // console.log(res)
-            if (res) {
+            if (res) 
                 setBusdetail(res)
-            }
+            setLoad(false)
         })()
     },[])
 
@@ -34,7 +35,7 @@ const BusDetail = ({navigation, route}) => {
             
             {/* Search */}
             <View className="mt-[-40px] z-10">
-                <Search disabled={true}/>   
+                <Search disabled={true} textHolder={'Xe buýt số ' + id.toString() + '  '}/>   
             </View>
             
             {/* map */}
@@ -52,6 +53,10 @@ const BusDetail = ({navigation, route}) => {
             <View className="absolute bg-[#f9f9f9] rounded-t-3xl px-4 z-10 bottom-0 w-full pt-4 h-3/5 border border-[#9adbfe]">
                 <Text style={{fontFamily:'Poppins-Bold'}} className="text-3xl text-center mt-2 mb-4">Trạm dừng</Text>
                 {
+                    load
+                    ?
+                    <ActivityIndicator size="large"/>
+                    :
                     busdetail
                     ?
                     <Swiper>
@@ -91,6 +96,9 @@ const BusDetail = ({navigation, route}) => {
                 animationType="slide"
                 transparent={true}
                 visible={busModal}
+                onRequestClose={() => {
+                    setBusModal(!busModal)
+                }}
             >
                 <View className="mt-20 flex flex-col p-6 mx-4 bg-white rounded-2xl border border-[#60c6ff] border-2 items-center">
                 <Text style={{fontFamily:'Poppins-Bold'}} className="text-3xl">Thông tin</Text>
@@ -136,6 +144,9 @@ const BusDetail = ({navigation, route}) => {
                 animationType="slide"
                 transparent={true}
                 visible={ratingModal}
+                onRequestClose={() => {
+                    setRatingModal(!ratingModal)
+                }}
             >
                 <View className="mt-28 flex flex-col p-6 mx-4 bg-white rounded-2xl border border-[#60c6ff] border-2 items-center">
                     <Text style={{fontFamily:'Poppins-Bold'}} className="text-3xl">Đánh giá</Text>

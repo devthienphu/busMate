@@ -7,7 +7,7 @@ import Icon from 'react-native-vector-icons/FontAwesome5';
 import findIcon from '../imgs/route/findIcon.png'
 import style from "../style";
 
-const BookTicket = () => {
+const BookTicket = ({navigation}) => {
     return (
         <LinearGradient colors={['#C7F2FD', '#60C6FF']} start={[0, 0]} end={[1, 1]}>
             <View className ="mt-8 p-4 h-full">
@@ -18,7 +18,7 @@ const BookTicket = () => {
                 <TextInput style={{fontFamily:'Poppins-Regular', elevation:5}} className="py-2 px-2 bg-white rounded-xl px-4 py-2 my-2" placeholder="Đi từ:"/>
                 <View className='relative'>
                     <TextInput style={{fontFamily:'Poppins-Regular', elevation:5}} className="py-2 px-2 bg-white rounded-xl px-4 py-2 my-2" placeholder="Đến:"/>
-                    <Image source={findIcon} className='absolute -top-36 -right-32 scale-50 z-10'></Image>
+                    <Image source={findIcon} className='absolute -top-36 -right-28 scale-50 z-10'></Image>
                 </View>
                 <TextInput style={{fontFamily:'Poppins-Regular', elevation:5}} className="py-2 px-2 bg-white rounded-xl px-4 py-2 my-2" placeholder="Thời gian đi:"/>
 
