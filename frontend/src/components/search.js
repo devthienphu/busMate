@@ -1,11 +1,23 @@
 import React from 'react';
 import { View,TextInput } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
-const Search = () => {
+import style from '../style';
+
+const Search = ({ setItem, disabled, textHolder }) => {
+    const handleChange = (event) => {
+        setItem(event.nativeEvent.text)
+    }
+
     return (
-        <View className="z-10 mt-[-50px] flex border flex-row justify-between items-center bg-white w-3/4 mx-auto rounded-xl mt-4 px-4">
-            <TextInput className="py-2" placeholder="Chọn tuyến xe bus"/>              
-            <Icon className="flex justify-end" name="search"></Icon>
+        <View style={style.shadow} className="z-10 mt-[-50px] flex flex-row justify-between items-center bg-white w-3/4 mx-auto rounded-xl mt-4 px-4">
+            <TextInput 
+                editable={!disabled} 
+                onChange={event => handleChange(event)} 
+                style={{fontFamily:'Poppins-Regular'}} 
+                className="py-2 px-2" 
+                placeholder={textHolder}
+            />              
+            <Icon name="search"></Icon>
         </View>
     );
 }

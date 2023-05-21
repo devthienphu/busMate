@@ -107,26 +107,69 @@ class UserController {
     //  [PATCH - ROUTE: api/user/favorite/:id] - ID of Bus
     addFavoriteBus = asyncHandler(async(req, res) => {
         //     console.log(req.params.id)
-        const bus = await Bus.findById(req.params.id)
+        // const bus = await Bus.findById(req.params.id)
+        // if (bus) {
+        //     var updateUser = await User.findOneAndUpdate({ _id: req.user._id }, {
+        //         $push: {
+        //             favoriteBus: {
+        //                 bus: new mongoose.Types.ObjectId(bus._id),
+        //                 number: bus.number
+        //             }
+        //         }
+        //     }, {
+        //         new: true
+        //     }).lean();
+        //     delete updateUser.password
+        //     res.json(updateUser)
+        // } else {
+        //     res.status(404);
+        //     throw new Error('Bus does not exist!');
+        // }
+        const bus = await Bus.findById(req.params.id);
         if (bus) {
-            var updateUser = await User.findOneAndUpdate({ _id: req.user._id }, {
-                $push: {
-                    favoriteBus: {
-                        bus: new mongoose.Types.ObjectId(bus._id) ,
-                        number: bus.number
-                    }
-                }
-            }, {
-                new: true
-            }).lean();     
-            delete updateUser.password      
-            res.json(updateUser)
+            const userId = req.user._id;
+            const favoriteBus = {
+                bus: new mongoose.Types.ObjectId(bus._id),
+                number: bus.number
+            };
+            var updateUser;
+            const user = await User.findById(userId);
+            if (user.favoriteBus.some(bus => bus.bus.equals(favoriteBus.bus))) {
+                updateUser = await User.findByIdAndUpdate(userId, {
+                    $pull: { favoriteBus: { bus: favoriteBus.bus } }
+                }, {
+                    new: true
+                }).lean();
+            } else {
+                updateUser = await User.findByIdAndUpdate(userId, {
+                    $push: { favoriteBus: favoriteBus }
+                }, {
+                    new: true
+                }).lean();
+            }
+            delete updateUser.password;
+            res.json(updateUser);
         } else {
             res.status(404);
             throw new Error('Bus does not exist!');
         }
-
     })
+
+    //  [GET - ROUTE: api/user/favorite] 
+    getFavoriteBuses = asyncHandler(async(req, res) => {
+        // console.log(userId)
+        // Find the user by their id and populate the favoriteBus field
+        const user = await User.findById(req.user._id).populate('favoriteBus.bus');
+
+        if (!user) {
+            res.status(404);
+            throw new Error('User not found');
+        }
+
+        // Extract the buses from the favoriteBus field and send them as a response
+        const favoriteBuses = user.favoriteBus.map(b => b.bus);
+        res.json(favoriteBuses);
+    });
 }
 
 module.exports = new UserController;

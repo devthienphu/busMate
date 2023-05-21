@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text,Image,Pressable } from 'react-native';
+import { Text, View,Image,Pressable } from 'react-native';
 
 import logo from '../imgs/logo.png'
 import startBtn from '../imgs/onBoarding/startBtn.png'
@@ -10,8 +10,8 @@ const OnBoarding = ({ navigation }) => {
     return (
         <View className ="bg-[#C8F2FE] h-full">
             <Image source={logo} className="w-72 h-72 mx-auto mt-10"></Image>
-            <Text className="italic font-black text-lg text-center">Bạn đồng hành trên mọi chuyến đi</Text>
-            <Pressable onPress={() => navigation.navigate('SignIn')} className="z-10">
+            <Text style={{ fontFamily: 'Poppins-BoldItalic' }} className="text-lg text-center">Bạn đồng hành trên mọi chuyến đi</Text>
+            <Pressable onPress={() => navigation.navigate('Home')} className="z-10">
                 <Image  source={startBtn} className="scale-50 ml-6 mt-[-50px] z-10"></Image>
             </Pressable>
             <View className="bg-white rounded-[150px] opacity-50 mt-[-220px] h-full ">

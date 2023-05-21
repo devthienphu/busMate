@@ -7,8 +7,10 @@ router.post('/register', userController.registerUser);
 router.post('/auth', userController.authUser);
 
 router.get('/', authMiddlewares.protect, userController.getUserProfile)
+    .get('/favorite', authMiddlewares.protect, userController.getFavoriteBuses)
     .patch('/favorite/:id', authMiddlewares.protect, userController.addFavoriteBus)
     .patch('/', authMiddlewares.protect, userController.updateUser)
-    
+
+
 
 module.exports = router;
