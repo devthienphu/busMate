@@ -63,7 +63,24 @@ const busModel = new Schema({
             required: true
         },
         default: []
-    }]
+    }],
+    rating: [{
+        score: {
+            type: Number,
+            required: true
+        },
+        feedback: {
+            type: Number,
+            required: true,
+            default: ""
+        },
+        user: {
+            type: Schema.Types.ObjectId,
+            required: true,
+            ref: 'User'
+        },
+        default: []
+    }],
 })
 
 module.exports = mongoose.model('Bus', busModel);

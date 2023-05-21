@@ -40,7 +40,8 @@ const bus = [{
         }, {
             nameStation: "Công Trường Mê Linh",
             afterDepartTime: 15
-        }]
+        }],
+        rating: []
     }, {
         name: "Tuyến số 03",
         number: 3,
@@ -83,7 +84,8 @@ const bus = [{
         }, {
             nameStation: "Bến xe buýt Sài Gòn",
             afterDepartTime: 15
-        }]
+        }],
+        rating: []
     }, {
         name: "Tuyến số 04",
         number: 4,
@@ -126,7 +128,8 @@ const bus = [{
         }, {
             nameStation: "Bến xe buýt Sài Gòn",
             afterDepartTime: 15
-        }]
+        }],
+        rating: []
     },
     {
         name: "Tuyến số 05",
@@ -170,7 +173,8 @@ const bus = [{
         }, {
             nameStation: "Bến xe Chợ Lớn",
             afterDepartTime: 15
-        }]
+        }],
+        rating: []
     },
     {
         name: "Tuyến số 06",
@@ -214,7 +218,8 @@ const bus = [{
         }, {
             nameStation: "Bến xe Chợ Lớn",
             afterDepartTime: 15
-        }]
+        }],
+        rating: []
     }, {
         name: "Tuyến số 07",
         number: 7,
@@ -257,7 +262,8 @@ const bus = [{
         }, {
             nameStation: "Bến xe Chợ Lớn",
             afterDepartTime: 15
-        }]
+        }],
+        rating: []
     },
     {
         name: "Tuyến số 08",
@@ -301,7 +307,8 @@ const bus = [{
         }, {
             nameStation: "Chùa Pháp Quang",
             afterDepartTime: 15
-        }]
+        }],
+        rating: []
     },
     {
         name: "Tuyến số 09",
@@ -345,7 +352,8 @@ const bus = [{
         }, {
             nameStation: "Lò Siêu",
             afterDepartTime: 15
-        }]
+        }],
+        rating: []
     },
     {
         name: "Tuyến số 10",
@@ -389,7 +397,8 @@ const bus = [{
         }, {
             nameStation: "Vành đai ĐHQG TPHCM ",
             afterDepartTime: 15
-        }]
+        }],
+        rating: []
     }
 ]
 module.exports = bus;
