@@ -70,7 +70,7 @@ const busModel = new Schema({
             required: true
         },
         feedback: {
-            type: Number,
+            type: String,
             required: true,
             default: ""
         },
