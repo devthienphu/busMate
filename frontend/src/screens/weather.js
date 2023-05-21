@@ -23,7 +23,7 @@ const Weather = ({navigation}) => {
                 <Text style={{fontFamily:'Poppins-Bold'}} className="text-4xl text-[#60C6FF] text-center">
                     {value.location}
                 </Text>
-                <Text style={{fontFamily:'Poppins-Bold'}} className="text-5xl text-[#FFC95F] text-center">
+                <Text style={{fontFamily:'Poppins-Bold'}} className="pt-4 text-5xl text-[#FFC95F] text-center">
                     {value.temperature}°C
                 </Text>
                 <Text style={{fontFamily:'Poppins-Bold'}} className="text-lg text-[#A0A7BA] text-center ">

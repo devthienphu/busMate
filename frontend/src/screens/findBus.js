@@ -33,7 +33,7 @@ const FindBus = ({navigation}) => {
 
             {/* Bus */} 
             <ScrollView>
-                <View className="flex flex-row flex-wrap items-center pt-6 space-y-4 h-screen mx-4 mb-12 justify-around">
+                <View className="flex flex-row flex-wrap items-center pt-6 space-y-4 h-screen mx-4 mb-28 justify-around">
                 {
                     load
                     ?

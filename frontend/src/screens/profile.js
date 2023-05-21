@@ -88,7 +88,7 @@ const Profile = ({navigation}) => {
                 </View>
 
                 {/* options */}
-                <View className='space-y-2'>
+                <View className=''>
                 {
                     options.map((item) => (
                         <LinearGradient key={item.name} colors={['rgba(255, 255, 255, 0.6)','rgba(112, 126, 255, 0.05)']} start={[0.5, 0]} end={[0.5, 1]}>

@@ -1,5 +1,5 @@
-import { useState } from 'react'
-
+import { useState,useEffect } from 'react'
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Image, ScrollView, Text, View, Modal, Pressable } from "react-native"
 import { BlurView } from 'expo-blur';
 import Header from "../components/header"
@@ -7,10 +7,21 @@ import Footer from "../components/footer"
 import success from '../imgs/ticket/success.png'
 import waiting from '../imgs/ticket/waiting.png'
 import style from '../style';
+import { getMyTicket } from '../api/ticketApi';
 
 const MyTicket = ({navigation}) => {
     const [ticketModal, setticketModal] = useState(false)
-
+    const [myTicket,setMyTicket] = useState([])
+    const [load, setLoad] = useState(true)
+    useEffect(()=>{
+        (async () => {
+            setLoad(true)
+            const token = await AsyncStorage.getItem('user')
+            const res = await getMyTicket(token);
+            
+            setLoad(false)
+        })()      
+    },[])
     return (
         <View className="flex flex-col h-full justify-between bg-[#f9f9f9]">
             <View>

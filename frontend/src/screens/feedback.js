@@ -1,13 +1,19 @@
 import React,{useEffect,useState} from 'react';
 import { View, Text,Image,Pressable,StatusBar,TextInput,SafeAreaView  } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 import Header from '../components/header';
 import moon from '../imgs/weather/moon.png'
 import style from '../style';
+import {feedBack} from '../api/reportApi'
 
 const Feedback = ({navigation}) => {
     const [content, setContent] = useState('');
     const sendFeedBack = async ()=>{
+        const token = await AsyncStorage.getItem('user')
+        const res=  await feedBack(token,content)
         setContent("")
+        // console.log(res)
     }
     return (
        <View className="bg-[#F9F9F9] h-full">

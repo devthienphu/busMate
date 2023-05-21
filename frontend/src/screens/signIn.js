@@ -72,7 +72,7 @@ const SignIn = ({ navigation }) => {
             <Pressable
                 className="bg-[#2F3039] rounded-2xl py-4 mx-12 px-4 mt-8"
                 style={styles.innerShadow}
-                onPress={handleHide}
+                onPress={()=>handleHide()}
             >
             <Text style={{fontFamily: 'Poppins-Bold'}} className="text-white text-2xl text-center">
                 Đăng nhập

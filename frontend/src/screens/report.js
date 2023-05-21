@@ -3,10 +3,14 @@ import { View, Text,Image,Pressable,StatusBar,TextInput,SafeAreaView  } from 're
 import Header from '../components/header';
 import moon from '../imgs/weather/moon.png'
 import style from '../style';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import {feedBack} from '../api/reportApi'
 
 const Report = ({navigation}) => {
     const [content, setContent] = useState('');
     const sendReport = async ()=>{
+        const token = await AsyncStorage.getItem('user')
+        const res=  await feedBack(token,content)
         setContent("")
     }
     return (
