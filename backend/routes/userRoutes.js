@@ -5,6 +5,7 @@ const authMiddlewares = require('../middlewares/authMiddlewares');
 
 router.post('/register', userController.registerUser);
 router.post('/auth', userController.authUser);
+router.post('/feedback/:id', authMiddlewares.protect, userController.sendRating);
 
 router.get('/', authMiddlewares.protect, userController.getUserProfile)
     .get('/favorite', authMiddlewares.protect, userController.getFavoriteBuses)

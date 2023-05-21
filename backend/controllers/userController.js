@@ -170,6 +170,21 @@ class UserController {
         const favoriteBuses = user.favoriteBus.map(b => b.bus);
         res.json(favoriteBuses);
     });
+
+    //  [POST - ROUTE: api/user/feedback/:id] - ID of bus
+    sendRating = asyncHandler(async(req, res) => {
+        let bus = await Bus.findById(req.params.id);
+        const user = req.user._id;
+        const { score, feedback } = req.body;
+
+        if (!bus) {
+            return res.status(404).json({ message: 'Bus not found!' });
+        }
+        const newRating = { score: Number(score), feedback, user };
+        bus.rating.push(newRating);
+        await bus.save();
+        res.status(201).json({ message: 'Rating added successfully', rating: newRating });
+    })
 }
 
 module.exports = new UserController;
