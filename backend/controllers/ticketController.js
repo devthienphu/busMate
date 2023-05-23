@@ -6,8 +6,12 @@ class TicketController {
     buyTicket = asyncHandler(async(req, res) => {
         const user = req.user._id;
         const pBus = await PassengerBus.findById(req.params.id);
-        if (pBus.available == 0) {
+        if (!pBus){
             res.status(404);
+            throw new Error("Cannot find passenger bus");            
+        }
+        if (pBus.available == 0) {
+            res.status(400);
             throw new Error("Sold out ticket!");
         } else {
             pBus.available -= 1;
@@ -29,7 +33,7 @@ class TicketController {
     //  [ GET - ROUTE: api/ticket]
     getTicket = asyncHandler(async(req, res) => {
         const user = req.user._id;
-        const tickets = await Ticket.find({ user });
+        const tickets = await Ticket.find({ user }).populate('passengerBus');
 
         if (!tickets) {
             res.status(404);
