@@ -42,6 +42,7 @@ const Profile = ({navigation}) => {
     const [load, setLoad] = useState(true)
     const [profile, setProfile] = useState(null)
     const [updateModel, setUpdateModel] = useState(false);
+    const [infoModel,setInfoModel] = useState(false)
     const [formValue, setFormValue] = useState({userName:'', contact:''})
 
     const updateInfo = async ()=>{
@@ -134,7 +135,7 @@ const Profile = ({navigation}) => {
                     ))   
                 }
 
-                <Pressable onPress={()=>{}}>
+                <Pressable onPress={()=>{setInfoModel(!infoModel)}}>
                     <LinearGradient  colors={['rgba(255, 255, 255, 0.6)','rgba(112, 126, 255, 0.05)']} start={[0.5, 0]} end={[0.5, 1]}>
                         <View className='flex flex-row items-center justify-between py-2 px-10'>
                             <View className='flex flex-row items-center justify-between space-x-4'>
@@ -200,9 +201,33 @@ const Profile = ({navigation}) => {
 
                 </Modal>
 
+                {/* app information */}
+                <Modal
+                    animationType="slide"
+                    transparent={true}
+                    visible={infoModel}
+                >
+                    <View className="mt-20 flex flex-col p-6 mx-4 bg-white rounded-2xl border border-[#60c6ff] border-2 items-center">
+                    <Text style={{fontFamily:'Poppins-Bold'}} className="text-3xl">BusMate</Text>
+                        <ScrollView className="pt-4 w-full">
+                            <Text style={{fontFamily:'Poppins-Regular'}} className="text-center">BusMate, bạn đồng hành trên những chuyến xe</Text>
+                            <Text style={{fontFamily:'Poppins-Regular'}} className="text-center">Version: 1.0.0</Text>
+
+                        </ScrollView>
+                        <View className="flex flex-row flex-wrap gap-x-4">
+                            <Pressable onPress={()=>setInfoModel(!infoModel)} className="rounded-xl bg-[#60c6ff] px-8 py-2 mt-4">
+                                <Text style={{fontFamily:'Poppins-Bold'}} className="text-white text-2xl text-center">Đóng</Text>
+                            </Pressable>
+                        </View>
+                        
+
+                    </View>
+
+                </Modal>
+
             </View>
             <Footer navigation={navigation} id={4}/>
-            {(updateModel)
+            {(updateModel||infoModel)
                 && 
                 <BlurView
                     tint="light"
