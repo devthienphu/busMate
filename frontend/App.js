@@ -20,6 +20,8 @@ import RouteDetail from './src/screens/routeDetail';
 import BookTicket from './src/screens/bookTicket';
 import MyTicket from './src/screens/myTicket';
 import Profile from './src/screens/profile';
+import Security from './src/screens/security';
+import Settings from './src/screens/settings';
 
 const Stack = createNativeStackNavigator();
 
@@ -81,6 +83,10 @@ export default function App() {
         <Stack.Screen name="BookTicket" component={BookTicket} />
         <Stack.Screen name="MyTicket" component={MyTicket} />
         <Stack.Screen name="Profile" component={Profile} />
+        <Stack.Screen name="Security" component={Security} />
+        <Stack.Screen name="Settings" component={Settings} />
+
+
       </Stack.Navigator>
     </NavigationContainer>
   );

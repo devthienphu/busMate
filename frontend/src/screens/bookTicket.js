@@ -50,7 +50,7 @@ const BookTicket = ({navigation}) => {
                             <ScrollView className='flex flex-col gap-y-2 '>
                                 {
                                     listTicket.map((ticket)=>(
-                                        <Pressable key={ticket.id} style={style.shadow} className="flex flex-col justify-between border border-[#9adbfe] bg-white p-2 rounded-2xl px-5 space-y-2">
+                                        <Pressable key={ticket.name} style={style.shadow} className="flex flex-col justify-between border border-[#9adbfe] bg-white p-2 rounded-2xl px-5 space-y-2">
                                             <View className='flex flex-row items-center justify-between mb-4'>
                                                 <Text style={{fontFamily:'Poppins-Bold'}} className='text-base'>{ticket.name}</Text>
                                                 <Icon name="chevron-right" size={15}></Icon>

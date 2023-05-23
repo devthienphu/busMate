@@ -11,7 +11,7 @@ const Header = ({navigation, title}) => {
                     <Image  source={backBtn} className="w-8 h-8"></Image>
                 </Pressable> 
                 {title?                 
-                <Text style={{fontFamily:'Poppins-Bold'}} className="flex-grow text-center pt-1 text-white text-2xl -ml-4">
+                <Text style={{fontFamily:'Poppins-Bold'}} className="flex-grow text-center pt-1 text-white text-2xl ml-[-40px]">
                     {title}
                 </Text>:""}
 

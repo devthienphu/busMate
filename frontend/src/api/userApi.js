@@ -63,7 +63,7 @@ export const getUser = async(token) => {
   }
 
 export const updateUser = async(token, formValue) => {
-    if( formValue.name==='' && formValue.contact==='' && formValue.password==='')
+    if( formValue.userName==='' && formValue.contact==='' && formValue.password==='')
         return;
 
     try {

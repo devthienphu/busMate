@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react' 
-
-import { ActivityIndicator, Image, Pressable, Text, View } from "react-native"
+import { BlurView } from 'expo-blur';
+import { ActivityIndicator, Image, Pressable, Text, View,Modal, ScrollView, TextInput } from "react-native"
 import Footer from "../components/footer"
 import { LinearGradient } from 'expo-linear-gradient';
 import Icon from 'react-native-vector-icons/FontAwesome5';
@@ -13,28 +13,23 @@ import setting from '../imgs/profile/setting.png'
 import evaluate from '../imgs/profile/evaluate.png'
 import sercurity from '../imgs/profile/sercurity.png'
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { getUser } from '../api/userApi';
+import { getUser,updateUser } from '../api/userApi';
 
 const options = [
     {
-        name: 'Cá nhân',
-        img: user
-    },
-    {
         name: 'Cài đặt',
-        img: setting
+        img: setting,
+        to:'Settings'
     },
     {
         name: 'Bảo mật',
-        img: sercurity
+        img: sercurity,
+        to:'Security'
     },
     {
         name: 'Đánh giá Busmate',
-        img: evaluate
-    },
-    {
-        name: 'Thông tin ứng dụng',
-        img: info
+        img: evaluate,
+        to:'Feedback'
     }
 ]
 
@@ -46,14 +41,35 @@ const logout = async (navigation) => {
 const Profile = ({navigation}) => {
     const [load, setLoad] = useState(true)
     const [profile, setProfile] = useState(null)
+    const [updateModel, setUpdateModel] = useState(false);
+    const [formValue, setFormValue] = useState({userName:'', contact:''})
+
+    const updateInfo = async ()=>{
+        const token = await AsyncStorage.getItem('user')
+        const res = await updateUser(token,formValue)
+        console.log(res)
+    }
+
+    const handleChange = (event, name) => {
+        setFormValue({
+            ...formValue,
+            [name]: event.nativeEvent.text
+        })
+    }
 
     useEffect(() => {
         (async () => {
             const token = await AsyncStorage.getItem('user')
-            setProfile(await getUser(token))
+            const res = await getUser(token)
+            setProfile(res)
+            setFormValue({
+                ...formValue,
+                contact: res.contact,
+                userName:res.userName
+            })
             setLoad(false)
         })()
-    },[])
+    },[updateModel])
 
     return (
         <View className='flex flex-col h-full justify-between bg-[#f9f9f9]'>
@@ -89,23 +105,112 @@ const Profile = ({navigation}) => {
 
                 {/* options */}
                 <View className=''>
+                    <Pressable onPress={()=>{setUpdateModel(!updateModel)}}>
+                            <LinearGradient  colors={['rgba(255, 255, 255, 0.6)','rgba(112, 126, 255, 0.05)']} start={[0.5, 0]} end={[0.5, 1]}>
+                                <View className='flex flex-row items-center justify-between py-2 px-10'>
+                                    <View className='flex flex-row items-center justify-between space-x-4'>
+                                        <Image source={user} className='w-16 h-16'></Image>
+                                        <Text className='text-base text-[#555]' style={{fontFamily:'Poppins-Regular'}}>Cá nhân</Text>
+                                    </View>
+
+                                    <Icon name="arrow-right"></Icon>
+                                </View>
+                            </LinearGradient>
+                    </Pressable>
                 {
                     options.map((item) => (
-                        <LinearGradient key={item.name} colors={['rgba(255, 255, 255, 0.6)','rgba(112, 126, 255, 0.05)']} start={[0.5, 0]} end={[0.5, 1]}>
-                            <View className='flex flex-row items-center justify-between py-2 px-10'>
-                                <View className='flex flex-row items-center justify-between space-x-4'>
-                                    <Image source={item.img} className='w-16 h-16'></Image>
-                                    <Text className='text-base text-[#555]' style={{fontFamily:'Poppins-Regular'}}>{item.name}</Text>
-                                </View>
+                        <Pressable key={item.name} onPress={() => navigation.navigate(item.to)}>
+                            <LinearGradient  colors={['rgba(255, 255, 255, 0.6)','rgba(112, 126, 255, 0.05)']} start={[0.5, 0]} end={[0.5, 1]}>
+                                <View className='flex flex-row items-center justify-between py-2 px-10'>
+                                    <View className='flex flex-row items-center justify-between space-x-4'>
+                                        <Image source={item.img} className='w-16 h-16'></Image>
+                                        <Text className='text-base text-[#555]' style={{fontFamily:'Poppins-Regular'}}>{item.name}</Text>
+                                    </View>
 
-                                <Icon name="arrow-right"></Icon>
-                            </View>
-                        </LinearGradient>
+                                    <Icon name="arrow-right"></Icon>
+                                </View>
+                            </LinearGradient>
+                        </Pressable>     
                     ))   
                 }
+
+                <Pressable onPress={()=>{}}>
+                    <LinearGradient  colors={['rgba(255, 255, 255, 0.6)','rgba(112, 126, 255, 0.05)']} start={[0.5, 0]} end={[0.5, 1]}>
+                        <View className='flex flex-row items-center justify-between py-2 px-10'>
+                            <View className='flex flex-row items-center justify-between space-x-4'>
+                                <Image source={info} className='w-16 h-16'></Image>
+                                <Text className='text-base text-[#555]' style={{fontFamily:'Poppins-Regular'}}>Thông tin ứng dụng</Text>
+                            </View>
+
+                            <Icon name="arrow-right"></Icon>
+                        </View>
+                    </LinearGradient>
+                </Pressable>
                 </View>
+
+                {/* Modal user information*/}
+                <Modal
+                    animationType="slide"
+                    transparent={true}
+                    visible={updateModel}
+                    onRequestClose={() => {
+                        setUpdateModel(!updateModel)
+                    }}
+                >
+                    <View className="mt-20 flex flex-col p-6 mx-4 bg-white rounded-2xl border border-[#60c6ff] border-2 items-center">
+                    <Text style={{fontFamily:'Poppins-Bold'}} className="text-3xl">Thông tin cá nhân</Text>
+                        <ScrollView className="pt-4 w-full">
+                            <View className="flex flex-col gap-y-1">
+                                <Text style={{fontFamily:'Poppins-Bold'}} className="text-gray-700">Tên</Text>
+                                <TextInput 
+                                    className="rounded-xl border border-2 px-3 text-lg py-1" 
+                                    defaultValue={formValue.userName}
+                                    onChange={event => handleChange(event, 'userName')}
+                                ></TextInput>
+
+                                <Text style={{fontFamily:'Poppins-Bold'}} className="text-gray-700">Liên hệ</Text>
+                                <TextInput 
+                                    className="rounded-xl border border-2 px-3 text-lg py-1" 
+                                    defaultValue={''+formValue.contact} 
+                                    keyboardType="numeric"
+                                    onChange={event => handleChange(event, 'contact')}
+                                ></TextInput>
+
+                                <Text style={{fontFamily:'Poppins-Bold'}} className="text-gray-700">Mật khẩu</Text>
+                                <TextInput 
+                                    className="rounded-xl border border-2 px-3 text-lg py-1" 
+                                    placeholder='********'
+                                    secureTextEntry={true}
+                                    onChange={event => handleChange(event, 'password')}
+                                ></TextInput>
+                            </View>
+                            </ScrollView>
+                        <View className="flex flex-row flex-wrap gap-x-4">
+                            <Pressable onPress={()=>setUpdateModel(!updateModel)} className="rounded-xl bg-[#60c6ff] px-8 py-2 mt-4">
+                                <Text style={{fontFamily:'Poppins-Bold'}} className="text-white text-2xl text-center">Đóng</Text>
+                            </Pressable>
+
+                            <Pressable onPress={()=>{setUpdateModel(!updateModel);updateInfo()}} className="rounded-xl bg-[#ffc046] px-6 py-2 mt-4">
+                                <Text style={{fontFamily:'Poppins-Bold'}} className="text-white text-2xl text-center">Cập nhật</Text>
+                            </Pressable>
+                        </View>
+                        
+
+                    </View>
+
+                </Modal>
+
             </View>
             <Footer navigation={navigation} id={4}/>
+            {(updateModel)
+                && 
+                <BlurView
+                    tint="light"
+                    intensity={100}
+                    className='absolute w-full h-full z-20'
+                />
+            }
+
         </View>
     )
 }
