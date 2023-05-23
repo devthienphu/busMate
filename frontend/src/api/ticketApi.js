@@ -26,3 +26,17 @@ export const getMyTicket = async(token) => {
         return error.response.data;
     }
 }
+
+export const buyTicket = async(token,id) => {
+  try {
+    const res = await axios({
+      method: "post",
+      url: `http://${ip}:5000/api/ticket/${id}`,
+      headers: { 
+        Authorization: `Bearer ${token}` }
+    });
+    return res.data;
+  } catch(error) {
+      return error.response.data;
+  }
+}

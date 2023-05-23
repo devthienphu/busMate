@@ -18,7 +18,7 @@ const MyTicket = ({navigation}) => {
             setLoad(true)
             const token = await AsyncStorage.getItem('user')
             const res = await getMyTicket(token);
-            
+            setMyTicket(res)
             setLoad(false)
         })()      
     },[])
@@ -43,19 +43,24 @@ const MyTicket = ({navigation}) => {
                                     <Image source={success} className='scale-[0.4]'></Image>
                                 </View>
                             </Pressable>
-
-                            <View className='px-4 rounded-2xl border border-[#FFC046]'>
-                                <View className='flex flex-row items-center justify-between'>
-                                    <View className='w-[3/5] space-y-1'>
-                                        <Text className='text-sm' style={{fontFamily:'Poppins-Regular'}}>Vé xe khách</Text>
-                                        <Text className='text-lg' style={{fontFamily:'Poppins-Bold'}}>Trung Nga</Text>
-                                        <Text className='text-base text-[#aaa]' numberOfLines={1} style={{fontFamily:'Poppins-Regular'}}>Phan Thiết - Sài Gòn</Text>
-                                        <Text className='text-base text-[#aaa]' numberOfLines={1} style={{fontFamily:'Poppins-Regular'}}>14:00 24/04/2023</Text>
+                            
+                            {
+                                myTicket.map((ticket)=>(  
+                                    <View key ={ticket._id} className='px-4 rounded-2xl border border-[#FFC046]'>
+                                        <View className='flex flex-row items-center justify-between'>
+                                            <View className='w-[3/5] space-y-1'>
+                                                <Text className='text-sm' style={{fontFamily:'Poppins-Regular'}}>Vé xe khách</Text>
+                                                <Text className='text-lg' style={{fontFamily:'Poppins-Bold'}}>{ticket.passengerBus.name}</Text>
+                                                <Text className='text-base text-[#aaa]' numberOfLines={1} style={{fontFamily:'Poppins-Regular'}}>{ticket.passengerBus.startPoint} - {ticket.passengerBus.destination}</Text>
+                                                <Text className='text-base text-[#aaa]' numberOfLines={1} style={{fontFamily:'Poppins-Regular'}}>Thời gian: {ticket.passengerBus.departTime}</Text>
+                                            </View>
+                                            <Image source={waiting} className='scale-[0.4]'></Image>
+                                        </View>
+                                        <Text className='text-sm text-[#aaa] pb-4' numberOfLines={1} style={{fontFamily:'Poppins-Regular'}}>Chưa thanh toán thành công</Text>
                                     </View>
-                                    <Image source={waiting} className='scale-[0.4]'></Image>
-                                </View>
-                                <Text className='text-sm text-[#aaa] pb-4' numberOfLines={1} style={{fontFamily:'Poppins-Regular'}}>Chưa thanh toán thành công</Text>
-                            </View>
+                                ))
+                            }
+                            
 
                         </View>
                     </ScrollView>
