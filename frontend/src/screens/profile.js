@@ -60,6 +60,8 @@ const Profile = ({navigation}) => {
 
     useEffect(() => {
         (async () => {
+            setLoad(true)
+
             const token = await AsyncStorage.getItem('user')
             const res = await getUser(token)
             setProfile(res)
@@ -68,6 +70,7 @@ const Profile = ({navigation}) => {
                 contact: res.contact,
                 userName:res.userName
             })
+            
             setLoad(false)
         })()
     },[updateModel])

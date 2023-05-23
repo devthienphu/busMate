@@ -82,17 +82,3 @@ export const updateUser = async(token, formValue) => {
         return error.response.data;
     }
 }
-
-export const changeFavBus = async(token, busID) => {
-    try {
-    const res = await axios({
-        method: "patch",
-        url: `http://${ip}:5000/api/favorite/${busID}`,
-        headers: { Authorization: `Bearer ${token}` },
-    });
-    return res.data;
-    
-    } catch(error) {
-        return error.response.data;
-    }
-}
