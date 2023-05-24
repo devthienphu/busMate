@@ -5,7 +5,7 @@ export const getListBuses = async(keySearch) => {
   try {
     const res = await axios({
       method: "get",
-      url: `http://${ip}:5000/api/bus?keyword=${keySearch}`,
+      url: `https://${ip}/api/bus?keyword=${keySearch}`,
     });
     return res.data;
   } catch(error) {
@@ -17,7 +17,7 @@ export const getBusDetail = async(number) => {
   try {
     const res = await axios({
       method: "get",
-      url: `http://${ip}:5000/api/bus/${number}`,
+      url: `https://${ip}/api/bus/${number}`,
     });
     return res.data;
   } catch(error) {
@@ -31,7 +31,7 @@ export const getFavBus = async(token) => {
   try {
   const res = await axios({
       method: "get",
-      url: `http://${ip}:5000/api/user/favorite`,
+      url: `https://${ip}/api/user/favorite`,
       headers: { Authorization: `Bearer ${token}` },
   });
   return res.data;
@@ -45,7 +45,7 @@ export const changeFavBus = async(token, busID) => {
   try {
   const res = await axios({
       method: "patch",
-      url: `http://${ip}:5000/api/user/favorite/${busID}`,
+      url: `https://${ip}/api/user/favorite/${busID}`,
       headers: { Authorization: `Bearer ${token}` },
   });
   return res.data;

@@ -6,7 +6,7 @@ export const feedBack = async(token,formValue) => {
     try {
       const res = await axios({
         method: "post",
-        url: `http://${ip}:5000/api/feedback`,
+        url: `https://${ip}/api/feedback`,
         data: {content:formValue},
         headers: { 
             Accept: 'application/json',

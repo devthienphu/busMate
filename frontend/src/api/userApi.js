@@ -9,7 +9,7 @@ export const signIn = async(formValue) => {
   try {
     const res = await axios({
       method: "post",
-      url: `http://${ip}:5000/api/user/auth`,
+      url: `https://${ip}/api/user/auth`,
       data: formValue,
       headers: { 
           Accept: 'application/json',
@@ -31,7 +31,7 @@ export const signUp = async(formValue) => {
   try {
     const res = await axios({
       method: "post",
-      url: `http://${ip}:5000/api/user/register`,
+      url: `https://${ip}/api/user/register`,
       data: { ...formValue, ['roleUser']:'customer' },
       headers: { 
           Accept: 'application/json',
@@ -49,7 +49,7 @@ export const getUser = async(token) => {
     try {
       const res = await axios({
         method: "get",
-        url: `http://${ip}:5000/api/user`,
+        url: `https://${ip}/api/user`,
         headers: { 
             Accept: 'application/json',
             "Content-Type": "application/x-www-form-urlencoded",
@@ -69,7 +69,7 @@ export const updateUser = async(token, formValue) => {
     try {
     const res = await axios({
         method: "patch",
-        url: `http://${ip}:5000/api/user`,
+        url: `https://${ip}/api/user`,
         data: formValue,
         headers: { 
             Accept: 'application/json',

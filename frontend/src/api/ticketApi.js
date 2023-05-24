@@ -5,7 +5,7 @@ export const getTicket = async(keyword) => {
     try {
       const res = await axios({
         method: "get",
-        url: `http://${ip}:5000/api/passengerBus?keyword=${keyword}`,
+        url: `https://${ip}/api/passengerBus?keyword=${keyword}`,
       });
       return res.data;
     } catch(error) {
@@ -17,7 +17,7 @@ export const getMyTicket = async(token) => {
     try {
         const res = await axios({
         method: "get",
-        url: `http://${ip}:5000/api/ticket/`,
+        url: `https://${ip}/api/ticket/`,
         headers: { 
             Authorization: `Bearer ${token}` },
         });
@@ -31,7 +31,7 @@ export const buyTicket = async(token,id) => {
   try {
     const res = await axios({
       method: "post",
-      url: `http://${ip}:5000/api/ticket/${id}`,
+      url: `https://${ip}/api/ticket/${id}`,
       headers: { 
         Authorization: `Bearer ${token}` }
     });
