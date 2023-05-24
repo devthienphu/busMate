@@ -24,3 +24,33 @@ export const getBusDetail = async(number) => {
       return error.response.data;
   }
 }
+
+export const getFavBus = async(token) => {
+  if (typeof(token) !== 'string') return []
+
+  try {
+  const res = await axios({
+      method: "get",
+      url: `http://${ip}:5000/api/user/favorite`,
+      headers: { Authorization: `Bearer ${token}` },
+  });
+  return res.data;
+  
+  } catch(error) {
+      return error.response.data;
+  }
+}
+
+export const changeFavBus = async(token, busID) => {
+  try {
+  const res = await axios({
+      method: "patch",
+      url: `http://${ip}:5000/api/user/favorite/${busID}`,
+      headers: { Authorization: `Bearer ${token}` },
+  });
+  return res.data;
+  
+  } catch(error) {
+      return error.response.data;
+  }
+}

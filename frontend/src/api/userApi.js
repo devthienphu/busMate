@@ -81,4 +81,4 @@ export const updateUser = async(token, formValue) => {
     } catch(error) {
         return error.response.data;
     }
-}
+  }

@@ -1,26 +1,48 @@
 import React, { useState, useEffect } from 'react';
-import { ActivityIndicator, View, Text, Pressable, ScrollView} from "react-native";
+import { ActivityIndicator, View, Text, Pressable, ScrollView } from "react-native";
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import Search from '../components/search';
 import Header from '../components/header'
 import style from '../style';
-import { getListBuses } from '../api/busApi';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { getFavBus, getListBuses, changeFavBus } from '../api/busApi';
+
+const handleChangeState = async (busId) => {
+    const token = await AsyncStorage.getItem('user')
+    await changeFavBus(token, busId)
+}
 
 const FindBus = ({navigation}) => {
     const [load, setLoad] = useState(true)
     const [listBus, setListBus] = useState([])
     const [bus, setBus] = useState('')
+    const [stateFav, setstateFav] = useState(true)
+
     useEffect(() => {
         (async () => {
             setLoad(true)
 
-            const res = await getListBuses(bus)
-            // console.log(res)
-            if (res) setListBus(res)
+            let favBuslist = await getFavBus(await AsyncStorage.getItem('user'))
+            let busList = await getListBuses(bus)
+            
+            favBuslist = favBuslist.filter((x) => {
+                for (item of busList)
+                    if (item._id === x._id)
+                        return true
+                return false 
+            })
+            favBuslist.forEach(x => x.favorite = true)
+            busList = busList.filter((x) => {
+                for (item of favBuslist)
+                    if (item._id === x._id)
+                        return false
+                return true 
+            })
+            setListBus(favBuslist.concat(busList))
 
-            setLoad(false)
+            setLoad(false) 
         })()
-    },[bus])
+    },[bus,stateFav])
     
     return (
         <View className=" h-full ">
@@ -33,7 +55,7 @@ const FindBus = ({navigation}) => {
 
             {/* Bus */} 
             <ScrollView>
-                <View className="flex flex-row flex-wrap items-center pt-6 space-y-4 h-screen mx-4 mb-28 justify-around">
+                <View className="flex flex-row flex-wrap items-center pt-6 space-y-4 h-screen mx-4 mb-12 justify-around">
                 {
                     load
                     ?
@@ -57,8 +79,9 @@ const FindBus = ({navigation}) => {
                                     <Text style={{fontFamily:'Poppins-SemiBold'}} className="ftext-gray-500">{item.unitPrice}k</Text>
                                 </Icon>
 
-                                <Icon name="heart" size={20} color="#ef7474"></Icon>
-
+                                <Pressable onPress={() => {item.favorite = !item.favorite; handleChangeState(item._id); setstateFav(!stateFav)}}>
+                                    <Icon name="heart" solid={item.favorite} size={20} color="#ef7474"></Icon>
+                                </Pressable>
                             </View>
                         </Pressable>
                     ))
