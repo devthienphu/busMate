@@ -4,6 +4,7 @@ import { BlurView } from 'expo-blur';
 import Swiper from 'react-native-swiper';
 import { View, Text, Modal, TextInput, Pressable,ScrollView,Image, ActivityIndicator} from "react-native";
 import Icon from 'react-native-vector-icons/FontAwesome5';
+import { PROVIDER_GOOGLE } from "react-native-maps"
 import MapView from 'react-native-maps'
 import Header from '../components/header'
 
@@ -42,6 +43,7 @@ const BusDetail = ({navigation, route}) => {
             <MapView 
                 className="w-full h-full mt-[-22px]"
                 // onRegionChange={onRegionChange}
+                provider={PROVIDER_GOOGLE}
                 initialRegion={{
                     "latitude": 10.878832141931976, 
                     "latitudeDelta": 0.004954235495171488, 

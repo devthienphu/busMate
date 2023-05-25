@@ -2,6 +2,7 @@ import React, {useLayoutEffect, useState} from 'react';
 import { View, Text, Image, Pressable, ScrollView, ActivityIndicator} from "react-native";
 import MapView from "react-native-maps"
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { PROVIDER_GOOGLE } from "react-native-maps"
 
 import Icon from 'react-native-vector-icons/FontAwesome5';
 
@@ -128,6 +129,7 @@ const Home = ({ navigation }) => {
                     <MapView
                         className="w-full h-full mt-[-10px]"
                         // onRegionChange={onRegionChange}
+                        provider={PROVIDER_GOOGLE}
                         initialRegion={{
                             "latitude": 10.878832141931976, 
                             "latitudeDelta": 0.004954235495171488, 

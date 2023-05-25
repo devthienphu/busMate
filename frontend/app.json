@@ -4,10 +4,10 @@
     "slug": "BusMate",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/logo.png",
+    "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/logo.png",
+      "image": "./assets/splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#C8F2FE"
     },
@@ -19,9 +19,10 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/logo.png",
+        "foregroundImage": "./assets/icon.png",
         "backgroundColor": "#ffffff"
       },
+      "android.config.googleMaps.apiKey":"AIzaSyDNI_ZWPqvdS6r6gPVO50I4TlYkfkZdXh8",
       "package": "com.hoenne.myapp"
     },
     "web": {

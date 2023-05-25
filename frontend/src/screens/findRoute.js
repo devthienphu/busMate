@@ -1,6 +1,7 @@
 import { View, Pressable } from "react-native"
 import Header from "../components/header"
 import MapView from "react-native-maps"
+import { PROVIDER_GOOGLE } from "react-native-maps"
 
 import Search from "../components/search";
 
@@ -17,6 +18,7 @@ const FindRoute = ({navigation}) => {
             <MapView
                 className="w-full h-full mt-[-22px]"
                 // onRegionChange={onRegionChange}
+                provider={PROVIDER_GOOGLE}
                 initialRegion={{
                     "latitude": 10.878832141931976, 
                     "latitudeDelta": 0.004954235495171488, 
