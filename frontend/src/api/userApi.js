@@ -5,6 +5,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 export const signIn = async(formValue) => {
   if(formValue.email==='' && formValue.password==='')
     return;
+  
 
   try {
     const res = await axios({
@@ -16,6 +17,8 @@ export const signIn = async(formValue) => {
           "Content-Type": "application/x-www-form-urlencoded" },
       
     });
+    console.log(res);
+    
     await AsyncStorage.setItem('user', res.data.token);
     return res.data;
 
