@@ -22,7 +22,6 @@
         "foregroundImage": "./assets/icon.png",
         "backgroundColor": "#ffffff"
       },
-      "android.config.googleMaps.apiKey":"AIzaSyDNI_ZWPqvdS6r6gPVO50I4TlYkfkZdXh8",
       "package": "com.hoenne.myapp"
     },
     "web": {

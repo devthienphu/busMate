@@ -1,8 +1,8 @@
-import { View, Pressable } from "react-native"
+import { View, Pressable,Image } from "react-native"
 import Header from "../components/header"
-import MapView from "react-native-maps"
-import { PROVIDER_GOOGLE } from "react-native-maps"
-
+// import MapView from "react-native-maps"
+// import { PROVIDER_GOOGLE } from "react-native-maps"
+import map2 from '../imgs/map2.png'
 import Search from "../components/search";
 
 const FindRoute = ({navigation}) => {
@@ -15,7 +15,7 @@ const FindRoute = ({navigation}) => {
                 <Search disabled={true} textHolder='Nhập điểm đến  '/>
             </Pressable>
 
-            <MapView
+            {/* <MapView
                 className="w-full h-full mt-[-22px]"
                 // onRegionChange={onRegionChange}
                 provider={PROVIDER_GOOGLE}
@@ -24,7 +24,8 @@ const FindRoute = ({navigation}) => {
                     "latitudeDelta": 0.004954235495171488, 
                     "longitude": 106.80599564686418, 
                     "longitudeDelta": 0.002536363899707794}}
-            ></MapView>
+            ></MapView> */}
+            <Image source={map2} className="w-full h-full mt-[-22px]"></Image>
 
         </View>
     )

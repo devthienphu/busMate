@@ -1,8 +1,8 @@
 import React, {useLayoutEffect, useState} from 'react';
 import { View, Text, Image, Pressable, ScrollView, ActivityIndicator} from "react-native";
-import MapView from "react-native-maps"
+// import MapView from "react-native-maps"
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { PROVIDER_GOOGLE } from "react-native-maps"
+// import { PROVIDER_GOOGLE } from "react-native-maps"
 
 import Icon from 'react-native-vector-icons/FontAwesome5';
 
@@ -19,6 +19,7 @@ import avatar from '../imgs/profile/avatar.png'
 import Footer from '../components/footer';
 import Search from '../components/search';
 import style from '../style';
+import map1 from '../imgs/map1.png'
 import { useIsFocused } from '@react-navigation/native';
 
 const applications =[
@@ -126,7 +127,7 @@ const Home = ({ navigation }) => {
                 </View>
                 
                 <View className="h-[280px] mt-4">
-                    <MapView
+                    {/* <MapView
                         className="w-full h-full mt-[-10px]"
                         // onRegionChange={onRegionChange}
                         provider={PROVIDER_GOOGLE}
@@ -135,7 +136,9 @@ const Home = ({ navigation }) => {
                             "latitudeDelta": 0.004954235495171488, 
                             "longitude": 106.80599564686418, 
                             "longitudeDelta": 0.002536363899707794}}
-                    ></MapView>
+                    ></MapView> */}
+
+                    <Image className="w-full h-full mt-[-10px]" source={map1}></Image>
                 </View>
 
                 {/* News */}

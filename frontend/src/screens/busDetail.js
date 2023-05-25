@@ -7,7 +7,7 @@ import Icon from 'react-native-vector-icons/FontAwesome5';
 import { PROVIDER_GOOGLE } from "react-native-maps"
 import MapView from 'react-native-maps'
 import Header from '../components/header'
-
+import map1 from '../imgs/map1.png'
 import Search from '../components/search';
 import avatar from '../imgs/avatar.png'
 import { getBusDetail } from '../api/busApi';
@@ -40,7 +40,7 @@ const BusDetail = ({navigation, route}) => {
             </View>
             
             {/* map */}
-            <MapView 
+            {/* <MapView 
                 className="w-full h-full mt-[-22px]"
                 // onRegionChange={onRegionChange}
                 provider={PROVIDER_GOOGLE}
@@ -49,7 +49,8 @@ const BusDetail = ({navigation, route}) => {
                     "latitudeDelta": 0.004954235495171488, 
                     "longitude": 106.80599564686418, 
                     "longitudeDelta": 0.002536363899707794}}
-            ></MapView>
+            ></MapView> */}
+            <Image source={map1} className="w-full h-full mt-[-22px]"></Image>
 
             {/* Route detail */}
             <View className="absolute bg-[#f9f9f9] rounded-t-3xl px-4 z-10 bottom-0 w-full pt-4 h-3/5 border border-[#9adbfe]">
